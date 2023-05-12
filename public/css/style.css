@@ -1,0 +1,53 @@
+
+
+
+. {
+  padding-left: 25px;
+  color: #5C4033;
+}
+
+ nav {
+  background-color: #3EB489;
+  color: #ccc;
+  margin:0;
+  width:100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  font-size: 30px;
+}
+
+nav a {
+  color: #5C4033;
+
+display: inline-block;
+}
+
+.header-h1 {
+  text-align: left;
+}
+
+.btn {
+  background-color: #ccc;
+  color: #5C4033;
+}
+
+header,
+.post:not(:last-child) {
+  border-bottom: 2px solid #5C4033;
+}
+
+.btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #5C4033;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.btn:hover {
+  color: red;
+  text-decoration: underline;
+}
