@@ -1,80 +1,31 @@
-# tech-blog
-A CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well, deployed in Heroku. This is a full-stack app built with Handlebars, Express, and Sequelize/MySQL. 
+##Social Network API
+This is a social network API that allows users to create, update, and delete users, thoughts, reactions, and friends. This application uses Node.js, Express.js, Mongoose, and MongoDB.
+##Usage
+To use this application, follow these steps:
 
-- [tech-blog](#tech-blog)
-  - [Setup](#setup)
-  - [Sessions](#sessions)
-  - [Authentication](#authentication)
-  - [Templates](#templates)
-  - [Code Style](#code-style)
-  - [Deploy to Heroku](#deploy-to-heroku)
-    - [Prerequisites](#prerequisites)
-    - [Create and Configure a Heroku App](#create-and-configure-a-heroku-app)
-    - [Seed JawsDB](#seed-jawsdb)
+Invoke the application by running npm start.
+The Mongoose models will be synced to the MongoDB database.
+Open Insomnia and test the following API routes:
+GET /api/users - to get all users
+GET /api/users/:id - to get a specific user by ID
+POST /api/users - to create a new user
+PUT /api/users/:id - to update a specific user by ID
+DELETE /api/users/:id - to delete a specific user by ID
+GET /api/thoughts - to get all thoughts
+GET /api/thoughts/:id - to get a specific thought by ID
+POST /api/thoughts - to create a new thought
+PUT /api/thoughts/:id - to update a specific thought by ID
+DELETE /api/thoughts/:id - to delete a specific thought by ID
+POST /api/thoughts/:id/reactions - to create a reaction to a specific thought by ID
+DELETE /api/thoughts/:thoughtId/reactions/:reactionId - to delete a reaction to a specific thought by ID
+POST /api/users/:userId/friends/:friendId - to add a friend to a user's friend list
+DELETE /api/users/:userId/friends/:friendId - to remove a friend from a user's friend list
+License
 
-## Setup
-
-1. Run `npm i`.
-2. You will need an existing MySQL database. **mysql -> source db/schema.sql**
-3. Create `.env` file with MySQL credentials for local development and a SECRET. Refer to [.env.EXAMPLE](./.env.EXAMPLE)
-4. Run `npm start` to start the app.
 
 
 
-## Sessions
 
-[express-session](https://www.npmjs.com/package/express-session) and [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) are used for session management. Configure cookies and sessions in [config/session.js](./config/session.js)
 
-## Authentication
 
-Passwords are hashed using [bcrypt](https://www.npmjs.com/package/bcrypt). Middleware for protected routes redirects to `/login`. This can be modified by updating [util/withAuth.js](./util/withAuth.js).
 
-## Templates
-
-[Handlebars.js](https://handlebarsjs.com/) and [express-handlebars](https://www.npmjs.com/package/express-handlebars) are used for rendering templates.
-
-You can add your own custom helper functions by exporting them from [util/helpers.js](./util/helpers.js).
-
-## Code Style
-
-[ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) are included for enforcing consistent code quality and format. The default configuration includes the ESLint recommended plugin, the Prettier plugin, plus a couple of additional rules. Modify [.eslintrc.js](./.eslintrc.json) to customize the rules.
-
-## Deploy to Heroku
-
-Deployment Link: (https://tech-blog-0331.herokuapp.com/)[https://tech-blog-0331.herokuapp.com/]
-
-### Prerequisites
-
-Sign up for an [Heroku](https://id.heroku.com/login) account and install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
-
-The app must be setup using Git for version control in order to deploy on Heroku
-following this guide. Be sure to initialize Git before proceeding if you did not
-initially create this project by using the template repo.
-
-### Create and Configure a Heroku App
-
-The code for this boilerplate is pre-configured to deploy to Heroku and connect to the JAWS DB add-on for MySQL. In order to deploy, you must provision the JAWS DB add-on.
-
-**IMPORTANT:** Payment info. must be provided in order to use the JawsDB MySQL
-add-on. You must provide a credit card to use the service. **With the exception that all of you must be using the student package**
-
-1. Create a Heroku app in the command line. `heroku create <optionally-provide an app name>`
-
-2. Provision the [JawsDB MySQL add-on](https://elements.heroku.com/addons/jawsdb) with the free pricing plan. `heroku addons:create jawsdb:kitefin`
-
-3. Add environmental variables to the heroku config. The boilerplate uses
-   `SECRET` to sign the session id cookie. Use a tool to generate a long
-   randomized string for this value. (e.g. `hsKVlvYcC5b#Fw1FS*qz`) Add `SECRET`
-   to config by running `heroku config:set SECRET=<your long random secret>`.
-
-4. Use the same command to add any other environmental variables required for
-   your app to function. (`heroku config:set <name>=<value>`)
-
-5. Deploy the app by running `git push heroku main`. (Use the command again to deploy updates.)
-
-6. Open your app in the browser with `heroku open`.
-
-### Seed JawsDB
-
-Running `heroku run npm run seed` will run the seed script in Heroku if your
-seeds are required for production.
