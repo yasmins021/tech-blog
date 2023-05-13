@@ -1,6 +1,6 @@
-##Social Network API
+## Social Network API
 This is a social network API that allows users to create, update, and delete users, thoughts, reactions, and friends. This application uses Node.js, Express.js, Mongoose, and MongoDB.
-##Usage
+## Usage
 To use this application, follow these steps:
 
 Invoke the application by running npm start.
